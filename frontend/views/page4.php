@@ -4,7 +4,7 @@
 <div class="central">
        <div class="pep2">
      <br><br>  <br> <h1><span class="the-s">S</span>ign up</h1>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="$POST">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="POST">
             <br><br><label for="email">Email:</label>
             <br><br><input type="email" name="email">
             <p class="the-s"><?php echo $emailErr?></p>
@@ -29,3 +29,4 @@
        </div>
     </div>
 <?php include 'toes.php'; ?>
+

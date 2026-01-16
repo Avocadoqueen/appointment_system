@@ -4,7 +4,7 @@
 <div class="central">
         <div class="pep2">
         <br><br><h1><span class="the-s">S</span>ign Up</h1>
-       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?> method="POST">
+       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="POST">
        
         <br><br><label for="uni">University:</label>
         <input type="text" name="uni"><br>
@@ -22,3 +22,4 @@
     </div>
     </div> 
 <?php include 'toes.php'; ?>
+

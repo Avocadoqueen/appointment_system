@@ -4,7 +4,7 @@
 <div class="central2">
         <div class="pep4">
             <h1><span class="the-a">A</span>ppointment Rescheduling</h1><br><br>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="$POST">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="POST">
                 <label for="aptime">Appointment Time:</label>
                 <select name="aptime" id="">
                     <optgroup>
@@ -24,3 +24,4 @@
            
         </div> 
   </div>
+

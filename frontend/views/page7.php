@@ -4,7 +4,11 @@
 <div class="central">
        <div class="pep2">
         <h1><span class="the-a">A</span>ppointment Booking</h1><br><br>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="$POST">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" name="name">
+            <p class="the-s"><?php echo $nameErr?></p>
+
             <label for="aptype">Appointment Type:</label>
             <select name="aptype" id="">
                 <optgroup>
@@ -42,7 +46,8 @@
              <label for="apdate">Appointment Date:</label>
              <input type="date" name="apdate"><br><br>
              <label for="rap">Reason for Appointment:</label>
-             <textarea class="textarea"></textarea>
+             <textarea class="textarea" name="reason"></textarea>
+             <p class="the-s"><?php echo $appointmentMessage?></p>
 
              <div>
                 <input type="submit" value="Submit" class="next" name="pib">
@@ -52,3 +57,4 @@
        </div>
     </div>
 <?php include 'toes.php'; ?>
+

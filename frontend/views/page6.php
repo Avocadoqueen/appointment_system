@@ -7,7 +7,7 @@
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="POST">
            <label for="emaila">Email:</label>
             <input type="email" name="emaila">
-            <p class="the-s"><?php echo $emailErr?></p>
+            <p class="the-s"><?php echo $emailaErr?></p>
 
             <br><br><label for="passworda">Password:</label>
             <input type="password" name="passworda">
@@ -19,3 +19,4 @@
        </div>
        </div>
 <?php include 'toes.php'; ?>
+

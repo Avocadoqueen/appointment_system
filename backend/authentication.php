@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/lib/appointments.php';
+
  $fname = $lname = $dob = $gender = $occupation = '';
  $fnameErr = $lnameErr = $dobErr = $genderErr = $occupationErr = '';
 
@@ -36,7 +38,7 @@
     if(empty($_POST['occupation'])) {
         $occupationErr = 'Occupation is required *';
     } else {
-        $occupation = filter_input(INPUT_POST, 'occpation', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $occupation = filter_input(INPUT_POST, 'occupation', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     }
     
  }
@@ -74,7 +76,7 @@ if (isset($_POST['mit'])) {
     if (empty($_POST['emaila'])) {
         $emailaErr = 'The email field is required *';
     } else {
-        $emaila = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $emaila = filter_input(INPUT_POST, 'emaila', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     }
 
     if (empty($_POST['passworda'])) {
@@ -84,11 +86,18 @@ if (isset($_POST['mit'])) {
 ?>
 
 <?php
-$aptype = $doc = $aptime = $apdate ='';
-$aptypeErr = $docErr = $aptimeErr = $apdateErr ='';
+$name = $aptype = $doc = $aptime = $apdate = $reason = '';
+$nameErr = $aptypeErr = $docErr = $aptimeErr = $apdateErr ='';
+$appointmentMessage = '';
 
 //for the 7th form from page7
 if (isset($_POST['pib'])) {
+    if (empty($_POST['name'])) {
+        $nameErr = 'The name field is required *';
+    } else {
+        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    }
+
     if (empty($_POST['aptype'])) {
         $aptypeErr = 'The Appointment type is required *';
     } else {
@@ -114,6 +123,26 @@ if (isset($_POST['pib'])) {
         $apdateErr = 'The Appointment date is required *';
     } else {
         $apdate =  filter_input(INPUT_POST, 'apdate', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    }
+
+    if (!empty($_POST['reason'])) {
+        $reason = filter_input(INPUT_POST, 'reason', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    }
+
+    if (!$nameErr && !$aptypeErr && !$docErr && !$aptimeErr && !$apdateErr) {
+        try {
+            create_appointment([
+                'name' => $name,
+                'date' => $apdate,
+                'time' => $aptime,
+                'reason' => $reason,
+                'type' => $aptype,
+                'doctor' => $doc,
+            ]);
+            $appointmentMessage = 'Appointment saved.';
+        } catch (Exception $e) {
+            $appointmentMessage = 'Could not save appointment.';
+        }
     }
 }
 ?>
@@ -141,7 +170,7 @@ if (isset($_POST['flop'])) {
 
 <?php
 $password = $pword = $email = $phoneno = '';
-$passworddErr = $pwordErr = $emailErr = $phonenoErr = '';
+$passwordErr = $pwordErr = $emailErr = $phonenoErr = '';
 
 //for form from page4
 if (isset($_POST['blop'])) {

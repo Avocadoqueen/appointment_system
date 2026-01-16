@@ -8,38 +8,35 @@
      
      
               <div class="pip0">
-             <div class="pip1">
-             <h2>Dr Khalid</h2>
-            <div class="sider">
-             <p class="the-a">Now</p>
-            <p>1st April 2024</p>
-            </div>
-            <button class="attend">Attend</button>
-          </div>
-           
-           <div class="pip1">
-             <h2>Dr Fatima</h2>
-             <div class="sider">
-                 <p>11:00am</p>
-             <p>15th April 2024</p>
-             </div>
-             <button class="view1">View</button>
-         </div>
-     
-           <div class="pip1">
-             <h2>Dr Mustapha</h2>
-             <div class="sider">
-                 <p>2:00pm</p>
-             <p>15th April 2024</p>
-             </div>
-             <button class="view1">View</button>
-         </div>
+             <?php
+             $appointments = list_appointments(50);
+             if (!$appointments) {
+                 echo '<p>No appointments yet.</p>';
+             } else {
+                 foreach ($appointments as $appointment) {
+                     $doctor = htmlspecialchars($appointment['doctor'] ?? 'Doctor', ENT_QUOTES, 'UTF-8');
+                     $time = htmlspecialchars($appointment['time'] ?? '', ENT_QUOTES, 'UTF-8');
+                     $date = htmlspecialchars($appointment['date'] ?? '', ENT_QUOTES, 'UTF-8');
+                     $name = htmlspecialchars($appointment['name'] ?? '', ENT_QUOTES, 'UTF-8');
+                     echo '<div class="pip1">';
+                     echo '<h2>' . $doctor . '</h2>';
+                     echo '<div class="sider">';
+                     echo '<p>' . $time . '</p>';
+                     echo '<p>' . $date . '</p>';
+                     echo '</div>';
+                     echo '<p>' . $name . '</p>';
+                     echo '<button class="view1">View</button>';
+                     echo '</div>';
+                 }
+             }
+             ?>
          </div>
             </div>
      </div>
      
      <div class="book">
-         <img src="../images/Frame365.png" alt="">
+         <img src="images/Frame365.png" alt="">
      </div>
        </div>
 <?php include 'toes.php'; ?>
+
